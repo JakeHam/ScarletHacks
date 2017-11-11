@@ -1,0 +1,24 @@
+{
+  "name": "webwindow",
+  "version": "1.0.0",
+  "description": "ScarletHacks 2017 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JakeHam/ScarletHacks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JakeHam/ScarletHacks/issues"
+  },
+  "homepage": "https://github.com/JakeHam/ScarletHacks#readme",
+  "dependencies": {
+    "aframe": "^0.7.1",
+    "typescript": "^2.6.1",
+    "vue": "^2.5.3"
+  }
+}
