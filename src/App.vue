@@ -3,13 +3,10 @@
         <div class="topnav" id="demoNavigation">
 
             <input type='radio' name='demo' id='mapbox_radio' value='Mapbox' v-model='demo'>
-            <label for='mapbox_radio' v-bind:class="{ chosen: demo=='Mapbox' }">Mapbox Demo</label>
-
-            <input type='radio' id='aframe_radio' value='Aframe' v-model='demo'>
-            <label for='aframe_radio' v-bind:class="{ chosen: demo=='Aframe' }">Aframe Demo</label>
+            <label for='mapbox_radio' v-bind:class="{ chosen: demo=='Mapbox' }">Mapbox</label>
 
             <input type='radio' id='shopping_radio' value='Shopping' v-model='demo'>
-            <label for='shopping_radio' v-bind:class="{ chosen: demo=='Shopping' }">Shopping Demo</label>
+            <label for='shopping_radio' v-bind:class="{ chosen: demo=='Shopping' }">Shopping</label>
 
             <input type='radio' id='videochat_radio' value='VideoChat' v-model='demo'>
             <label for='videochat_radio'>Video Chat</label>
