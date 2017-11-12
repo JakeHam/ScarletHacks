@@ -7,14 +7,20 @@
       width="480px">
     </v-mapboxgl>
 
-    <video id="camera-display" width="320" height="240" preload autoplay loop muted controls></video>
-    <canvas id="camera-canvas" width="320" height="240"></canvas>
+    <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
+    <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
   </div>
 </template>
 
 <script>
 export default {
     name: 'app',
+    created: function() {
+        this.positionX = 0;
+        this.positionY = 0;
+        this.cameraWidth = 320;
+        this.cameraHeight = 240;
+    },
     mounted: function() {
         var video = document.getElementById('camera-display');
         var canvas = document.getElementById('camera-canvas');
@@ -27,6 +33,7 @@ export default {
 
         tracking.track('#camera-display', tracker, { camera: true });
 
+        self = this;
         tracker.on('track', function(event) {
             context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -37,12 +44,20 @@ export default {
                 context.fillStyle = "#fff";
                 context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
                 context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+
+                self.positionX = ((rect.x + rect.width / 2) - self.cameraWidth / 2) / (self.cameraWidth / 2);
+                self.positionY = ((rect.y + rect.height / 2) - self.cameraHeight / 2) / (self.cameraHeight / 2);
             });
         });
 
     },
     data () {
-        return {}
+        return {
+            cameraWidth: this.cameraWidth | 0,
+            cameraHeight: this.cameraHeight | 0,
+            positionX: this.positionX | 0,
+            positionY: this.positionY | 0
+        }
     }
 }
 </script>
