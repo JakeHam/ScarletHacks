@@ -7,7 +7,7 @@
         </header>
 
         <div>
-          <div style="float: left; width: 700px; hight: 500px;">
+          <div style="float: left; width: 700px; hight: 500px; margin-right: 20px;">
             <a-scene embedded style="width: 700px; height: 500px;">
               <a-entity position="0 0 -3" :rotation="rotation">
                 <a-box position="-1 0.5 0" rotation="0 45 0" color="#4CC3D9"></a-box>

@@ -98,6 +98,12 @@ body {
 .topnav {
     background-color: #333;
     overflow: hidden;
+    width: 100%;
+    height: 50px;
+    z-index: 1000;
+
+    border-bottom: solid 3px gray;
+    display: inline-block;
 }
 
 .topnav input[type=radio] {
@@ -105,19 +111,12 @@ body {
     display: none;
 }
 
-.topnav {
-    border: solid 3px gray;
-    display: inline-block;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
 .topnav label {
     color: lightgray;
     display: inline-block;
     font-weight: bold;
-    padding: 5px 20px;
+    padding: 15px 20px 0;
+    height: 50px;
 }
 
 .topnav label:hover {
@@ -128,12 +127,6 @@ body {
 .topnav input:checked {
     background-color: lightgreen;
     color:black;
-}
-
-.container {
-    margin-top: 25px;
-    margin-left: 50px;
-    margin-right: 50px;
 }
 
 #camera-display, #camera-canvas {

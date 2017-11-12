@@ -60,9 +60,8 @@ export default {
 <style scoped>
 #map {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  margin: 100px;
+  top: 50px;
+  bottom: 0px;
+  width: 100%;
 }
 </style>
