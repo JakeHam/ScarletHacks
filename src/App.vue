@@ -11,6 +11,9 @@
             <input type='radio' id='shopping_radio' value='Shopping' v-model='demo'>
             <label for='shopping_radio' v-bind:class="{ chosen: demo=='Shopping' }">Shopping Demo</label>
 
+            <input type='radio' id='videochat_radio' value='VideoChat' v-model='demo'>
+            <label for='videochat_radio'>Video Chat</label>
+
         </div>
 
         <mapbox v-if="demo=='Mapbox'"
@@ -27,6 +30,11 @@
         :facePositionY="positionY">
         </shopping>
 
+        <videochat v-if="demo=='VideoChat'"
+        :facePositionX="positionX"
+        :facePositionY="positionY">
+        </videochat>
+
         <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
         <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
     </div>
@@ -34,13 +42,15 @@
 
 <script>
 import Mapbox from './components/Mapbox.vue'
+import VideoChat from './components/VideoChat.vue'
 import Shopping from './components/Shopping.vue'
 
 export default {
     name: 'app',
     components: {
       mapbox: Mapbox,
-      shopping: Shopping
+      shopping: Shopping,
+      videochat: VideoChat,
     },
     created: function() {
         this.positionX = 0;
