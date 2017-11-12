@@ -1,8 +1,5 @@
 <template>
   <div id='map'>
-    <p id='latlng'>Lat: {{ lat }} Lng: {{ lng }}</p>
-    <p id='faceXY'>X: {{ facePositionX }} Y: {{ facePositionY }}</p>
-    <p id='pitch'>Pitch: {{ facePositionX * 60 }}</p>
   </div>
 </template>
 
@@ -24,6 +21,7 @@ const defaultOptions = {
 }
 
 let map;
+let modifier = 65;
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFtZWwiLCJhIjoiY2l2c3JqMTlwMDR4MjJ0bXUxYm16azBuNSJ9.T4v9QQ4hrPTAm4iTE2j-Lg';
 
@@ -46,12 +44,14 @@ export default {
   watch: {
     facePositionX: function(newVal) {
       map.flyTo({
-        bearing: newVal * 60
+        bearing: newVal * modifier,
+        speed: 2.5
       })
     },
     facePositionY: function(newVal) {
       map.flyTo({
-        pitch: newVal * 60 + 45
+        pitch: (newVal * modifier) + 45,
+        speed: 2.5
       })
     }
   }
