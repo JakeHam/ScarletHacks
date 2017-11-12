@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import vMapboxgl from './components/vMapboxgl.vue'
+import vMapboxgl from './components/Mapbox.vue'
 import Camera from './components/Camera.vue'
 
 Vue.component('v-mapboxgl', vMapboxgl)
