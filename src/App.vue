@@ -1,72 +1,59 @@
 <template>
   <div id="app">
-    <button style="position: absolute; top: 15px; left: 15px; z-index: 99999;" v-on:click="addAttribution">Add Attribution</button>
-
     <v-mapboxgl
-      :id="mapId"
-      :access-token="mapAccessToken"
-      :height="mapHeight"
-      :width="mapWidth"
-      :gl-center="mapCenter"
-      :gl-controls="mapControls"
-      :gl-zoom="mapZoom"
-      :gl-style="mapStyle"
-      :gl-bearing="mapBearing"
-      :gl-pitch="mapPitch">
+      id="mapId"
+      access-token="mapAccessToken"
+      height="640px"
+      width="480px">
     </v-mapboxgl>
+
+    <video id="camera-display" width="320" height="240" preload autoplay loop muted controls></video>
+    <canvas id="camera-canvas" width="320" height="240"></canvas>
   </div>
 </template>
 
 <script>
 export default {
-  data ()  {
-    return {
-      mapId: 'map',
-      mapAccessToken: 'pk.eyJ1IjoibmFpbWlrYW4iLCJhIjoiY2lraXJkOXFjMDA0OXdhbTYzNTE0b2NtbiJ9.O64XgZQHNHcV2gwNLN2a0Q',
-      mapHeight: window.innerHeight,
-      mapWidth: window.innerWidth,
-      mapCenter: {
-        autodiscover: true
-      },
-      mapControls: {
-        navigation: {
-          enabled: true,
-          options: {}
-        }
-      },
-      mapZoom: {
-        value: 8
-      },
-      mapStyle: 'mapbox://styles/mapbox/streets-v9',
-      mapBearing: {
-        value: 40
-      },
-      mapPitch: {
-        value: 60
-      }
-    }
-  },
-  methods: {
-    handleResize (event) {
-      this.mapHeight = event.currentTarget.innerHeight
-      this.mapWidth = event.currentTarget.innerWidth
-    },
-    addAttribution (event) {
-      this.mapControls = Object.assign({}, this.mapControls, { attribution: { enabled: true }});
-    }
-  },
-  mounted () {
-    window.addEventListener('resize', this.handleResize)
+    name: 'app',
+    mounted: function() {
+        var video = document.getElementById('camera-display');
+        var canvas = document.getElementById('camera-canvas');
+        var context = canvas.getContext('2d');
 
-    this.$on('mapboxglMap:styleChanged', function (event, args) {
-      console.log(event, args);
-    });
-  }
+        var tracker = new tracking.ObjectTracker(['face']);
+        tracker.setInitialScale(4);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+
+        tracking.track('#camera-display', tracker, { camera: true });
+
+        tracker.on('track', function(event) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            event.data.forEach(function(rect) {
+                context.strokeStyle = '#a64ceb';
+                context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                context.font = '11px Helvetica';
+                context.fillStyle = "#fff";
+                context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+                context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+            });
+        });
+
+    },
+    data () {
+        return {}
+    }
 }
 </script>
 
 <style>
 body {
   margin: 0;
+}
+#camera-display, #camera-canvas {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
 }
 </style>

@@ -96,6 +96,13 @@ export default {
     }
   },
   methods: {
+    handleResize (event) {
+      this.mapHeight = event.currentTarget.innerHeight
+      this.mapWidth = event.currentTarget.innerWidth
+    },
+    addAttribution (event) {
+      this.mapControls = Object.assign({}, this.mapControls, { attribution: { enabled: true }});
+    },
     updateWidth (width) {
       if (isNaN(width)) {
         this.$el.style.width = width;
@@ -199,7 +206,30 @@ export default {
   },
   data () {
     return {
-      mapInstance: null
+      mapInstance: null,
+      mapId: 'map',
+      mapAccessToken: 'pk.eyJ1IjoibmFpbWlrYW4iLCJhIjoiY2lraXJkOXFjMDA0OXdhbTYzNTE0b2NtbiJ9.O64XgZQHNHcV2gwNLN2a0Q',
+      mapHeight: window.innerHeight,
+      mapWidth: window.innerWidth,
+      mapCenter: {
+        autodiscover: true
+      },
+      mapControls: {
+        navigation: {
+          enabled: true,
+          options: {}
+        }
+      },
+      mapZoom: {
+        value: 8
+      },
+      mapStyle: 'mapbox://styles/mapbox/streets-v9',
+      mapBearing: {
+        value: 40
+      },
+      mapPitch: {
+        value: 60
+      }
     }
   },
   beforeCreate () {
@@ -228,6 +258,7 @@ export default {
     }
   },
   mounted () {
+    window.addEventListener('resize', this.handleResize);
     var self = this;
     self.changeLoadingMap(true);
     var mapboxglMapId = self.id ? self.id : 'vue-map-' + Utils.generateGUID();
