@@ -1,8 +1,8 @@
 <template>
     <div id="app" class="container">
         <div class="topnav" id="demoNavigation">
- 
-            <input type='radio' id='mapbox_radio' value='Mapbox' v-model='demo'>
+
+            <input type='radio' name='demo' id='mapbox_radio' value='Mapbox' v-model='demo'>
             <label for='mapbox_radio'>Mapbox Demo</label>
 
             <input type='radio' id='aframe_radio' value='Aframe' v-model='demo'>
@@ -18,6 +18,15 @@
         :facePositionY="positionY">
         </mapbox>
 
+        <div v-if="demo=='Aframe'">
+        TODO: A-frame demo
+        </div>
+
+        <shopping v-if="demo=='Shopping'"
+        :facePositionX="positionX"
+        :facePositionY="positionY">
+        </shopping>
+
         <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
         <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
     </div>
@@ -25,11 +34,13 @@
 
 <script>
 import Mapbox from './components/Mapbox.vue'
+import Shopping from './components/Shopping.vue'
 
 export default {
     name: 'app',
     components: {
-      Mapbox
+      mapbox: Mapbox,
+      shopping: Shopping
     },
     created: function() {
         this.positionX = 0;
