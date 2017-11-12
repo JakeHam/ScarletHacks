@@ -3,13 +3,13 @@
         <div class="topnav" id="demoNavigation">
 
             <input type='radio' name='demo' id='mapbox_radio' value='Mapbox' v-model='demo'>
-            <label for='mapbox_radio'>Mapbox Demo</label>
+            <label for='mapbox_radio' v-bind:class="{ chosen: demo=='Mapbox' }">Mapbox Demo</label>
 
             <input type='radio' id='aframe_radio' value='Aframe' v-model='demo'>
-            <label for='aframe_radio'>Aframe Demo</label>
+            <label for='aframe_radio' v-bind:class="{ chosen: demo=='Aframe' }">Aframe Demo</label>
 
             <input type='radio' id='shopping_radio' value='Shopping' v-model='demo'>
-            <label for='shopping_radio'>Shopping Demo</label>
+            <label for='shopping_radio' v-bind:class="{ chosen: demo=='Shopping' }">Shopping Demo</label>
 
         </div>
 
@@ -93,6 +93,7 @@ export default {
 <style>
 body {
   margin: 0;
+  font-family: sans-serif;
 }
 
 .topnav {
@@ -124,7 +125,7 @@ body {
     color:black;
 }
 
-.topnav input:checked {
+.topnav label.chosen {
     background-color: lightgreen;
     color:black;
 }
