@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <mapbox></mapbox>
+    <mapbox 
+    :facePositionX="positionX"
+    :facePositionY="positionY">
+    </mapbox>
 
     <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
     <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
