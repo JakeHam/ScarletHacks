@@ -1,13 +1,26 @@
 <template>
-  <div id="app">
-    <mapbox 
-    :facePositionX="positionX"
-    :facePositionY="positionY">
-    </mapbox>
+    <div id="app" class="container">
+        <div class="topnav" id="demoNavigation">
+ 
+            <input type='radio' id='mapbox_radio' value='Mapbox' v-model='demo'>
+            <label for='mapbox_radio'>Mapbox Demo</label>
 
-    <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
-    <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
-  </div>
+            <input type='radio' id='aframe_radio' value='Aframe' v-model='demo'>
+            <label for='aframe_radio'>Aframe Demo</label>
+
+            <input type='radio' id='shopping_radio' value='Shopping' v-model='demo'>
+            <label for='shopping_radio'>Shopping Demo</label>
+
+        </div>
+
+        <mapbox v-if="demo=='Mapbox'"
+        :facePositionX="positionX"
+        :facePositionY="positionY">
+        </mapbox>
+
+        <video id="camera-display" :width="cameraWidth" :height="cameraHeight" preload autoplay loop muted controls></video>
+        <canvas id="camera-canvas" :width="cameraWidth" :height="cameraHeight"></canvas>
+    </div>
 </template>
 
 <script>
@@ -56,6 +69,7 @@ export default {
     },
     data () {
         return {
+            demo: 'Mapbox',
             cameraWidth: this.cameraWidth | 0,
             cameraHeight: this.cameraHeight | 0,
             positionX: this.positionX | 0,
@@ -69,6 +83,48 @@ export default {
 body {
   margin: 0;
 }
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav input[type=radio] {
+    visibility: hidden;
+    display: none;
+}
+
+.topnav {
+    border: solid 3px gray;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.topnav label {
+    color: lightgray;
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.topnav label:hover {
+    background-color: lightgreen;
+    color:black;
+}
+
+.topnav input:checked {
+    background-color: lightgreen;
+    color:black;
+}
+
+.container {
+    margin-top: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 #camera-display, #camera-canvas {
     position: fixed;
     right: 0px;

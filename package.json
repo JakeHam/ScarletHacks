@@ -12,6 +12,7 @@
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.0.3",
     "aframe": "^0.7.1",
+    "bootstrap": "^4.0.0-beta.2",
     "mapbox-gl": "^0.41.0",
     "node-sass": "^4.6.1",
     "tracking": "^1.1.3",

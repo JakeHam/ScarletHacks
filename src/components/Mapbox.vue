@@ -1,6 +1,5 @@
 <template>
-  <div id='map'>
-  </div>
+  <div id='map'></div>
 </template>
 
 <script>
@@ -64,17 +63,6 @@ export default {
   top: 0;
   bottom: 0;
   width: 50%;
-}
-
-#latLng {
-  background: transparentize(white, 0.2);
-  bottom: 0;
-  box-sizing: border-box;
-  display: inline;
-  left: 10px;
-  padding: 5px;
-  pointer-events: none;
-  position: absolute;
-  z-index: 200;
+  margin: 100px;
 }
 </style>
